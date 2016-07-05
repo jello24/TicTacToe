@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class TicTacToe
 {
 	// Create a board array
@@ -8,6 +10,7 @@ public class TicTacToe
 
 	static boolean p1win;
 	static boolean p2win;
+	static boolean draw;
 
 	public static void main(String[] args)
 	{
@@ -17,7 +20,7 @@ public class TicTacToe
 
 		printBoard();
 
-		while( (!p1win) && (!p2win) )
+		while( (!p1win) && (!p2win) && (!draw) )
 		{
 			// Prompt user for move
 
@@ -262,8 +265,9 @@ public class TicTacToe
 		int row = 0;
 		int col = 0;
 
-		p1win = FALSE;
-		p2win = FALSE;
+		p1win = false;
+		p2win = false;
+		draw = false;
 
 		for(row = 0; row < 3; row++)
 		{
