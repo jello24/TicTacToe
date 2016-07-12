@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Random;
 
 public class TicTacToe
 {
@@ -16,41 +17,120 @@ public class TicTacToe
 	{
 		initBoard();
 
-		System.out.println("This is my Tic Tac Toe game");
+		System.out.println("This is Jan's Tic Tac Toe game");
+		System.out.println("Right now, you're just playing against a CPU who knows nothing.");
 
 		printBoard();
 
 		while( (!p1win) && (!p2win) && (!draw) )
 		{
 			// Prompt user for move
-
-			// Display move
+			promptUser();
 
 			// Check win condition
+			if(checkWin(1))
+			{
+				p1win = true;
+			}
+			else
+				p1win = false;
 
 			// If P1 hasn't won yet, respond to move
+			if(!p1win)
+			{
+				cpuMove();
+			}
 
 			// Display ai move
+			printBoard();
 
 			// Check win condition
+			if(checkWin(2))
+			{
+				p2win = true;
+			}
+			else
+				p2win = false;
 		}
+
+		if(p1win)
+			System.out.println("Player 1 wins!");
+		else if(p2win)
+			System.out.println("Player 2 wins!");
+		else
+			System.out.println("It's a draw!");
 	}
 
 	// Prompt user for move, check if move is valid
 	public static void promptUser()
 	{
-		Scanner input = new Scanner(System.in);
+		String move;
 
-		System.out.println("Please enter your move: ");
-
-		String move = input.next();
-
-		if(isMoveValid(move))
+		do
 		{
-			addMove(move, 1);
-		}
+			Scanner input = new Scanner(System.in);
+
+			System.out.print("Please enter your move: ");
+
+			move = input.next();
+
+		}while(!isMoveValid(move));
+
+		addMove(move, 1);
 
 	}
+
+	public static void cpuMove()
+	{
+		Random r = new Random(System.currentTimeMillis());
+
+		int randInt;
+		
+		String move = "";
+
+		do
+		{
+			randInt = r.nextInt(9);
+
+			switch(randInt)
+			{
+				case 0:
+					move = "a1";
+					break;
+				case 1:
+					move = "b1";
+					break;
+				case 2:
+					move = "c1";
+					break;
+				case 3:
+					move = "a2";
+					break;
+				case 4:
+					move = "b2";
+					break;
+				case 5:
+					move = "c2";
+					break;
+				case 6:
+					move = "a3";
+					break;
+				case 7:
+					move = "b3";
+					break;
+				case 8:
+					move = "c3";
+					break;
+				default:
+					move = "a1";
+					break;
+			}
+
+		}while(!isMoveValid(move));
+
+		addMove(move, 2);
+	}
+
 
 	public static boolean isMoveValid(String move)
 	{
@@ -158,6 +238,16 @@ public class TicTacToe
 			if(gameState[0][0] == 0)
 			{
 				gameState[0][0] = player;
+
+				if(player == 1)
+				{
+					boardArray[1][1] = 'X';
+				}
+				else if(player == 2)
+				{
+					boardArray[1][1] = 'O';
+				}
+
 				return true;
 			}
 
@@ -169,6 +259,16 @@ public class TicTacToe
 			if(gameState[0][1] == 0)
 			{
 				gameState[0][1] = player;
+
+				if(player == 1)
+				{
+					boardArray[1][5] = 'X';
+				}
+				else if(player == 2)
+				{
+					boardArray[1][5] = 'O';
+				}
+
 				return true;
 			}
 
@@ -180,6 +280,16 @@ public class TicTacToe
 			if(gameState[0][2] == 0)
 			{
 				gameState[0][2] = player;
+
+				if(player == 1)
+				{
+					boardArray[1][9] = 'X';
+				}
+				else if(player == 2)
+				{
+					boardArray[1][9] = 'O';
+				}
+
 				return true;
 			}
 
@@ -192,6 +302,16 @@ public class TicTacToe
 			if(gameState[1][0] == 0)
 			{
 				gameState[1][0] = player;
+
+				if(player == 1)
+				{
+					boardArray[5][1] = 'X';
+				}
+				else if(player == 2)
+				{
+					boardArray[5][1] = 'O';
+				}
+
 				return true;
 			}
 
@@ -203,6 +323,16 @@ public class TicTacToe
 			if(gameState[1][1] == 0)
 			{
 				gameState[1][1] = player;
+
+				if(player == 1)
+				{
+					boardArray[5][5] = 'X';
+				}
+				else if(player == 2)
+				{
+					boardArray[5][5] = 'O';
+				}
+
 				return true;
 			}
 
@@ -214,6 +344,16 @@ public class TicTacToe
 			if(gameState[1][2] == 0)
 			{
 				gameState[1][2] = player;
+
+				if(player == 1)
+				{
+					boardArray[5][9] = 'X';
+				}
+				else if(player == 2)
+				{
+					boardArray[5][9] = 'O';
+				}
+
 				return true;
 			}
 
@@ -226,6 +366,16 @@ public class TicTacToe
 			if(gameState[2][0] == 0)
 			{
 				gameState[2][0] = player;
+
+				if(player == 1)
+				{
+					boardArray[9][1] = 'X';
+				}
+				else if(player == 2)
+				{
+					boardArray[9][1] = 'O';
+				}
+
 				return true;
 			}
 
@@ -237,6 +387,16 @@ public class TicTacToe
 			if(gameState[2][1] == 0)
 			{
 				gameState[2][1] = player;
+
+				if(player == 1)
+				{
+					boardArray[9][5] = 'X';
+				}
+				else if(player == 2)
+				{
+					boardArray[9][5] = 'O';
+				}
+
 				return true;
 			}
 
@@ -248,12 +408,64 @@ public class TicTacToe
 			if(gameState[2][2] == 0)
 			{
 				gameState[2][2] = player;
+
+				if(player == 1)
+				{
+					boardArray[9][9] = 'X';
+				}
+				else if(player == 2)
+				{
+					boardArray[9][9] = 'O';
+				}
+
 				return true;
 			}
 
 			else
 				return false;
 		}
+		else
+			return false;
+
+	}
+
+	public static boolean checkWin(int player)
+	{
+		if((gameState[0][0] == player) && (gameState[0][1] == player) && (gameState[0][2] == player))
+		{
+			return true;
+		}
+		else if((gameState[1][0] == player) && (gameState[1][1] == player) && (gameState[1][2] == player))
+		{
+			return true;
+		}
+		else if((gameState[2][0] == player) && (gameState[2][1] == player) && (gameState[2][2] == player))
+		{
+			return true;
+		}
+
+		else if((gameState[0][0] == player) && (gameState[1][0] == player) && (gameState[2][0] == player))
+		{
+			return true;
+		}
+		else if((gameState[0][1] == player) && (gameState[1][1] == player) && (gameState[2][1] == player))
+		{
+			return true;
+		}
+		else if((gameState[0][2] == player) && (gameState[1][2] == player) && (gameState[2][2] == player))
+		{
+			return true;
+		}
+
+		else if((gameState[0][0] == player) && (gameState[1][1] == player) && (gameState[2][2] == player))
+		{
+			return true;
+		}
+		else if((gameState[0][2] == player) && (gameState[1][1] == player) && (gameState[2][0] == player))
+		{
+			return true;
+		}
+
 		else
 			return false;
 
@@ -345,6 +557,5 @@ public class TicTacToe
 			}
 			System.out.println();
 		}
-		System.out.print("printBoard");
 	}
 }
